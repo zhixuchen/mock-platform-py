@@ -74,7 +74,7 @@ selenium==3.14.1
 shellescape==3.8.1
 six==1.12.0
 tablib==1.1.0
-urllib3==1.23
+urllib3==1.24.2
 Werkzeug==0.15.2
 workbook==1.1
 xlrd==1.2.0
