@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import *
 from mock import views
+from django.views.generic.base import RedirectView
 import xadmin
 admin.autodiscover()
 urlpatterns = [
 
     path('', xadmin.site.urls),
     # path('', admin.site.urls),
+    path("favicon.ico", RedirectView.as_view(url='static/favicon.ico')),
     re_path('(?P<par>\S*)',views.entrance),
 
 ]
