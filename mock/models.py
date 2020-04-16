@@ -5,15 +5,15 @@ from django.db import models
 class Project(models.Model):
     name = models.CharField('项目名称', max_length=64)  # 项目名称
     project = models.CharField('项目标识', max_length=200)  # 项目标识
-    rule = models.TextField('项目规则_php')  # 项目规则
-    rule_py = models.TextField('项目规则_python')  # 项目规则_python
+    rule = models.TextField('项目规则_php',blank=True)  # 项目规则
+    rule_py = models.TextField('项目规则_python',blank=True)  # 项目规则_python
 
     class Meta:
         verbose_name = 'MOCK项目管理'
         verbose_name_plural = 'MOCK项目管理'
 
     def __str__(self):
-        return self.rule_py
+        return self.name
 
 
 class Function(models.Model):
@@ -26,7 +26,7 @@ class Function(models.Model):
         verbose_name_plural = 'MOCK方法管理'
 
     def __str__(self):
-        return self.value_py
+        return self.function_name
 
 
 class Method(models.Model):
@@ -34,17 +34,17 @@ class Method(models.Model):
     project_id = models.CharField('项目id', max_length=64)  # 项目id
     name = models.CharField('请求描述', max_length=200)  # 请求描述
     uri = models.CharField('请求接口', max_length=200)  # 请求接口
-    route = models.CharField('请求路由', max_length=200)  # 请求路由
+    route = models.CharField('请求路由', max_length=200,blank=True)  # 请求路由
     type = models.CharField('请求类型', max_length=200)  # 请求类型
     result = models.TextField('mock结果')  # mock结果
-    pragram = models.CharField('请求参数', max_length=200)  # 请求参数
+    parameter = models.CharField('请求参数', max_length=200,blank=True)  # 请求参数
 
     class Meta:
         verbose_name = 'MOCK请求管理'
         verbose_name_plural = 'MOCK请求管理'
 
     def __str__(self):
-        return self.result
+        return self.name
 
 
 class Callback(models.Model):
@@ -52,7 +52,7 @@ class Callback(models.Model):
     name = models.CharField('回调描述', max_length=200)  # 回调描述
     request_uri = models.CharField('请求接口', max_length=200)  # 请求接口
     request_body = models.TextField('请求BODY')  # 请求BODY
-    pragram = models.CharField('可变参数', max_length=200)  # 可变参数
+    parameter = models.CharField('可变参数', max_length=200,blank=True)  # 可变参数
     status = models.CharField('回调状态', max_length=200)  # 回调状态
 
     class Meta:
@@ -79,3 +79,15 @@ class Log(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Parameter(models.Model):
+    parameter_des = models.CharField('描述', max_length=200)  # 描述
+    parameter_name=models.CharField('获取参数名称', max_length=200)  # 参数名称
+    parameter=models.CharField('额外参数', max_length=200,blank=True)  # 参数名称
+    parameter_code=models.TextField('参数代码_python')  # 参数代码_python
+    class Meta:
+        verbose_name = 'MOCK模拟参数'
+        verbose_name_plural = 'MOCK模拟参数'
+    def __str__(self):
+        return self.parameter_name

@@ -44,7 +44,7 @@ class FunctionAdmin(admin.ModelAdmin):
 
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
-    list_display = ['project_id', 'name', 'uri', 'route', 'pragram', 'type', 'result']
+    list_display = ['project_id', 'name', 'uri', 'route', 'parameter', 'type', 'result']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     ordering = ('id',)
@@ -58,7 +58,7 @@ class MethodAdmin(admin.ModelAdmin):
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
-    list_display = ['project_id', 'name', 'request_uri', 'request_body', 'pragram', 'status']
+    list_display = ['project_id', 'name', 'request_uri', 'request_body', 'parameter', 'status']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     ordering = ('id',)

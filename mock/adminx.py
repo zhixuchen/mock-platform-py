@@ -7,7 +7,7 @@ from xadmin import views
 
 
 class ProjectAdmin():
-    list_display = ['id', 'project', 'name', 'rule_py']
+    list_display = ['id', 'name', 'project', 'rule_py']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     # ordering设置默认排序字段，负号表示降序排序
@@ -26,7 +26,7 @@ class ProjectAdmin():
     # 搜索功能及能实现搜索的字段
     search_fields = ('name', 'project',)
     # 设置哪些字段可以点击进入编辑界面
-    list_display_links = ('project',)
+    list_display_links = ('name',)
 
 
 
@@ -47,7 +47,7 @@ class FunctionAdmin():
 
 
 class MethodAdmin():
-    list_display = ['project_id', 'name', 'uri', 'route', 'pragram', 'type', 'result']
+    list_display = ['project_id', 'name', 'uri', 'route', 'parameter', 'type', 'result']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     ordering = ('id',)
@@ -61,7 +61,7 @@ class MethodAdmin():
 
 
 class CallbackAdmin():
-    list_display = ['project_id', 'name', 'request_uri', 'request_body', 'pragram', 'status']
+    list_display = ['project_id', 'name', 'request_uri', 'request_body', 'parameter', 'status']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     ordering = ('id',)
@@ -84,6 +84,20 @@ class LogAdmin():
     # 设置哪些字段可以点击进入编辑界面
     list_display_links = ('id',)
 
+class ParameterAdmin():
+    list_display = ['parameter_des', 'parameter_name', 'parameter','parameter_code']
+    # list_per_page设置每页显示多少条记录，默认是100条
+    list_per_page = 20
+    ordering = ('id',)
+    # list_editable 设置默认可编辑字段
+    list_editable = ['parameter_code','parameter']
+    # 搜索功能及能实现搜索的字段
+    search_fields = ('parameter_name',)
+    # 设置哪些字段可以点击进入编辑界面
+    list_display_links = ('parameter_des',)
+    # 过滤器功能及能过滤的字段
+    list_filter = ('parameter_name',)
+
 class GlobalSetting(object):
     site_title="自动化管理后台"
     site_footer="陈治许工作室"
@@ -98,6 +112,7 @@ xadmin.site.register(Function,FunctionAdmin)
 xadmin.site.register(Method,MethodAdmin)
 xadmin.site.register(Callback,CallbackAdmin)
 xadmin.site.register(Log,LogAdmin)
+xadmin.site.register(Parameter,ParameterAdmin)
 # xadmin.site.site_header = '自动化管理系统'
 # xadmin.site.site_title = '登录系统后台'
 # xadmin.site.index_title = '后台管理'
