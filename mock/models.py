@@ -5,8 +5,8 @@ from django.db import models
 class Project(models.Model):
     name = models.CharField('项目名称', max_length=64)  # 项目名称
     project = models.CharField('项目标识', max_length=200)  # 项目标识
-    rule = models.TextField('项目规则_php',blank=True)  # 项目规则
-    rule_py = models.TextField('项目规则_python',blank=True)  # 项目规则_python
+    rule = models.TextField('项目规则_php',blank=True,null=True)  # 项目规则
+    rule_py = models.TextField('项目规则_python',blank=True,null=True)  # 项目规则_python
 
     class Meta:
         verbose_name = 'MOCK项目管理'
@@ -34,10 +34,10 @@ class Method(models.Model):
     project_id = models.CharField('项目id', max_length=64)  # 项目id
     name = models.CharField('请求描述', max_length=200)  # 请求描述
     uri = models.CharField('请求接口', max_length=200)  # 请求接口
-    route = models.CharField('请求路由', max_length=200,blank=True)  # 请求路由
+    route = models.CharField('请求路由', max_length=200,blank=True,null=True)  # 请求路由
     type = models.CharField('请求类型', max_length=200)  # 请求类型
     result = models.TextField('mock结果')  # mock结果
-    parameter = models.CharField('请求参数', max_length=200,blank=True)  # 请求参数
+    parameter = models.CharField('请求参数', max_length=200,blank=True,null=True)  # 请求参数
 
     class Meta:
         verbose_name = 'MOCK请求管理'
@@ -52,7 +52,7 @@ class Callback(models.Model):
     name = models.CharField('回调描述', max_length=200)  # 回调描述
     request_uri = models.CharField('请求接口', max_length=200)  # 请求接口
     request_body = models.TextField('请求BODY')  # 请求BODY
-    parameter = models.CharField('可变参数', max_length=200,blank=True)  # 可变参数
+    parameter = models.CharField('可变参数', max_length=200,blank=True,null=True)  # 可变参数
     status = models.CharField('回调状态', max_length=200)  # 回调状态
 
     class Meta:
@@ -68,7 +68,7 @@ class Log(models.Model):
     method_id = models.CharField('mock_id', max_length=200)  # mock_id
     name = models.CharField('mock名称', max_length=200)  # mock名称
     request_url = models.CharField('请求URL', max_length=200)  # 请求URL
-    request_body = models.TextField('请求BODY')  # 请求BODY
+    request_body = models.TextField('请求BODY',blank=True,null=True)  # 请求BODY
     request_method = models.CharField('HTTP类型', max_length=200)  # HTTP类型
     response = models.TextField('请求响应')  # 请求响应
     creat_time = models.DateField('请求时间', max_length=200)  # 请求时间

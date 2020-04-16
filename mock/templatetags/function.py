@@ -69,7 +69,7 @@ class Method:
         if len(body) != 0:
             body = json.loads(body)
         try:
-            mock_method = method.getmethod(url, body)
+            mock_method = Method.getmethod(url, body)
             method_id = mock_method["method_id"]
             method_name = mock_method["method_name"]
         except:
@@ -77,9 +77,9 @@ class Method:
             method_name = "未找到对应mock请求的方法"
         log_id = Log.set_log("request", method_id, method_name, url, body, method, "")
         if method_id != 0:
-            method_result = method.getmethod_result(method_id, body)
+            method_result = Method.getmethod_result(method_id, body)
         else:
-            method_result = json.dumps({"url": url, "method": method, "body": body}, ensure_ascii=False)
+            method_result = json.dumps({"url": url, "method": method, "body": body,"msg":"未找到对应mock请求的方法"}, ensure_ascii=False)
         Log.updata_log(log_id, method_result)
         return HttpResponse(method_result, content_type="application/json,charset=utf-8")
 
@@ -93,7 +93,7 @@ class Method:
                     break
                 else:
                     project_id = method[3]
-                    rule_py = str(models.Project.objects.get(id=project_id))
+                    rule_py = str(models.Project.objects.get(id=project_id).rule_py)
                     rule = exec_code().ex(rule_py, body)
                     if rule == method[2]:
                         method_id = method[0]
@@ -113,12 +113,12 @@ class Method:
                 method_result = method[2]
                 break
         if method_parameter != None:
-            replace_parameter = method.getreplace(method_parameter, body)
+            replace_parameter = Method.getreplace(method_parameter, body)
             method_result = method_result.replace("{{" + method_parameter + "}}", str(replace_parameter))
         return method_result
 
     def getreplace(method_parameter, body):
-        code = str(models.Function.objects.get(function_name='get' + method_parameter))
+        code = str(models.Function.objects.get(function_name='get' + method_parameter).value_py)
         exec = exec_code()
         replace_parameter = exec.ex(code, body)
         return replace_parameter
