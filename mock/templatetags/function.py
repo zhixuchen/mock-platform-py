@@ -144,7 +144,7 @@ class exec_code(object):
     def ex(self, code, parameter):
         self.__globals__.setdefault('parameter', parameter)
         exec(code, self.__globals__, self.__locals__)
-        return self.__globals__['replace_parameter']
+        return self.__globals__['result']
 
 
 class mock_parameter:

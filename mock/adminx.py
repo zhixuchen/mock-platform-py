@@ -85,7 +85,7 @@ class LogAdmin():
     list_display_links = ('id',)
 
 class ParameterAdmin():
-    list_display = ['parameter_des', 'parameter_name', 'parameter','parameter_code']
+    list_display = ['parameter_des', 'parameter_name', 'parameter_code']
     # list_per_page设置每页显示多少条记录，默认是100条
     list_per_page = 20
     ordering = ('id',)

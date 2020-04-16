@@ -84,7 +84,6 @@ class Log(models.Model):
 class Parameter(models.Model):
     parameter_des = models.CharField('描述', max_length=200)  # 描述
     parameter_name=models.CharField('获取参数名称', max_length=200)  # 参数名称
-    parameter=models.CharField('额外参数', max_length=200,blank=True)  # 参数名称
     parameter_code=models.TextField('参数代码_python')  # 参数代码_python
     class Meta:
         verbose_name = 'MOCK模拟参数'
