@@ -13,7 +13,7 @@ configparser==3.5.0
 cpca==0.3.5
 defusedxml==0.6.0
 diff-match-patch==20181111
-Django==2.1.7
+Django==2.2.24
 django-bootstrap4==0.0.8
 django-celery==3.2.2
 django-crispy-forms==1.9.0
