@@ -47,7 +47,7 @@ odfpy==1.4.1
 openpyxl==3.0.3
 pandas==0.24.1
 pefile==2018.8.8
-Pillow==5.3.0
+Pillow==9.0.1
 post==2019.4.13
 public==2019.3.22
 pycryptodome==3.9.7
