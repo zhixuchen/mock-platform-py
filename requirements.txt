@@ -42,7 +42,7 @@ macropy3==1.1.0b2
 MarkupPy==1.14
 MarkupSafe==1.1.1
 Naked==0.1.31
-numpy==1.16.2
+numpy==1.22.0
 odfpy==1.4.1
 openpyxl==3.0.3
 pandas==0.24.1
